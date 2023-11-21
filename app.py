@@ -12,7 +12,7 @@ def index():
 def process_audio():
     data = request.get_json()
 
-    audio_base64 = data.get['audio']
+    audio_base64 = data.get('audio')
 
     if audio_base64:
         audio_data = base64.b64decode(audio_base64)
