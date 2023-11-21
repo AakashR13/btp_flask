@@ -10,17 +10,23 @@ def index():
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
-    # Get the audio file from the request
-    audio_file = request.files['audio']
+    data = request.get_json()
 
-    # Process the audio file here
-    # ...
+    audio_base64 = data.get['audio']
 
-    # Generate a random integer
-    random_int = random.randint(0, 100)
+    if audio_base64:
+        audio_data = base64.b64decode(audio_base64)
 
-    # Return the random integer as a JSON response
-    return {'random_int': random_int}
+        # Convert the audio data to an AudioSegment (you may need to install pydub)
+        audio = AudioSegment.from_file(io.BytesIO(audio_data))
+
+        # Generate a random integer
+        random_int = random.randint(0, 100)
+
+        # Return the random integer as a JSON response
+        return {'random_int': random_int}
+    else:
+        return {'error': 'No audio data provided.'}, 400
 
 if __name__ == '__main__':
     app.run(debug=True)
