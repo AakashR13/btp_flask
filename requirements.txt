@@ -2,3 +2,6 @@ Flask
 Flask-CORS
 numpy
 Gunicorn
+pydub
+random
+base64
