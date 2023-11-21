@@ -1,6 +1,4 @@
 from flask import Flask, request
-import random
-import base64
 
 app = Flask(__name__)
 
